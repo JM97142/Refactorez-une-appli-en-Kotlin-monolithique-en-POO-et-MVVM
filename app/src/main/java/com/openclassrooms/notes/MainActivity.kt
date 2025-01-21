@@ -6,8 +6,8 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.openclassrooms.notes.databinding.ActivityMainBinding
 import com.openclassrooms.notes.repository.NotesRepository
-import com.openclassrooms.notes.widget.NoteItemDecoration
-import com.openclassrooms.notes.widget.NotesAdapter
+import com.openclassrooms.notes.ui.NoteItemDecoration
+import com.openclassrooms.notes.ui.NotesAdapter
 import kotlinx.coroutines.launch
 
 /**

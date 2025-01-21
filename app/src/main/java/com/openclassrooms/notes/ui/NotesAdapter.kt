@@ -1,4 +1,4 @@
-package com.openclassrooms.notes.widget
+package com.openclassrooms.notes.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import com.openclassrooms.notes.databinding.NoteBinding
  * An adapter for displaying a list of notes in a RecyclerView.
  * @param notes The list of notes to display.
  */
-class NotesAdapter(private var notes: List<Pair<String, String>>) : RecyclerView.Adapter<NoteViewHolder>() {
+class NotesAdapter(private var notes: List<Pair<String, String>>) : RecyclerView.Adapter<NoteViewModel>() {
 
     /**
      * Updates the list of notes displayed by the adapter.
@@ -20,15 +20,15 @@ class NotesAdapter(private var notes: List<Pair<String, String>>) : RecyclerView
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewModel {
         val binding = NoteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return NoteViewHolder(binding)
+        return NoteViewModel(binding)
     }
 
     override fun getItemCount(): Int =
         notes.size
 
-    override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NoteViewModel, position: Int) {
         val note = notes[position]
         holder.bind(note)
     }
