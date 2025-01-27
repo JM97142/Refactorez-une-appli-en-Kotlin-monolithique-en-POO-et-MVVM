@@ -7,6 +7,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.openclassrooms.notes.databinding.ActivityMainBinding
 import com.openclassrooms.notes.repository.NotesRepository
 import com.openclassrooms.notes.ui.NoteItemDecoration
+import com.openclassrooms.notes.ui.NoteViewModel
 import com.openclassrooms.notes.ui.NotesAdapter
 import kotlinx.coroutines.launch
 
@@ -14,7 +15,6 @@ import kotlinx.coroutines.launch
  * The main activity for the app.
  */
 class MainActivity : AppCompatActivity() {
-
     /**
      * The binding for the main layout.
      */
@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
 
     private val notesRepository = NotesRepository()
 
+    private val noteViewModel = NoteViewModel(notesRepository)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,18 +34,6 @@ class MainActivity : AppCompatActivity() {
 
         initRecyclerView()
         initFABButton()
-        collectNotes()
-    }
-
-    /**
-     * Collects notes from the repository and updates the adapter.
-     */
-    private fun collectNotes() {
-        lifecycleScope.launch {
-            notesRepository.notes.collect {
-                notesAdapter.updateNotes(it)
-            }
-        }
     }
 
     /**
