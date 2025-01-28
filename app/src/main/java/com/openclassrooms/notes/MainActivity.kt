@@ -2,7 +2,10 @@ package com.openclassrooms.notes
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.openclassrooms.notes.databinding.ActivityMainBinding
 import com.openclassrooms.notes.repository.NotesRepository
@@ -34,6 +37,16 @@ class MainActivity : AppCompatActivity() {
 
         initRecyclerView()
         initFABButton()
+
+        val viewModel: NoteViewModel by ViewModel()
+        noteViewModel.collectNotes()
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                noteViewModel.allNotes.collect { notes ->
+                    notesAdapter.updateNotes(notes)
+                }
+            }
+        }
     }
 
     /**
