@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
         initRecyclerView()
         initFABButton()
 
-        val viewModel: NoteViewModel by ViewModel()
         noteViewModel.collectNotes()
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
