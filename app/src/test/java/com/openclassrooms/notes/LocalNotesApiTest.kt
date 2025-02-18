@@ -21,6 +21,7 @@ class LocalNotesApiTest {
     fun setUp() {
         localNotesApiService = LocalNotesApiService()
     }
+
     @Test
     fun getAllNotes_isCorrect() {
 
@@ -40,4 +41,5 @@ class LocalNotesApiTest {
 
        assertEquals(expectedNotes, actualNotes)
     }
+
 }
